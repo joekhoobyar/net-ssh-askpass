@@ -12,6 +12,7 @@ EOTEXT
     gem.email = "joe@ankhcraft.com"
     gem.homepage = "http://github.com/joekhoobyar/net-ssh-askpass"
     gem.authors = ["Joe Khoobyar"]
+    gem.add_runtime_dependency(%q<net-ssh>, [">= 2.0"])
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
