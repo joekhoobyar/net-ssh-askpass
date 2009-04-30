@@ -7,7 +7,7 @@ module Net
       module Prompt
         def prompt(text, echo=true)
           if ssh_askpass = ENV['SSH_ASKPASS']
-            `#{ssh_askpass} "#{text}"`
+            `#{ssh_askpass} "#{text}"`.strip
           else
             prompt_console text, echo
           end
