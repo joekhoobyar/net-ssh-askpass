@@ -6,6 +6,9 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "net-ssh-askpass"
     gem.summary = %Q{Plugs ssh-askpass into Net::SSH}
+    gem.description = <<-EOTEXT
+Allows you to use ssh-askpass with the Net:SSH gem.
+EOTEXT
     gem.email = "joe@ankhcraft.com"
     gem.homepage = "http://github.com/joekhoobyar/net-ssh-askpass"
     gem.authors = ["Joe Khoobyar"]

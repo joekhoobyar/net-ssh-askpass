@@ -1,6 +1,6 @@
 = net-ssh-askpass
 
-Description goes here.
+Plugs ssh-askpass into Net::SSH
 
 == Copyright
 
