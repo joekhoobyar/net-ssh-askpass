@@ -1,0 +1,7 @@
+= net-ssh-askpass
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Joe Khoobyar. See LICENSE for details.
