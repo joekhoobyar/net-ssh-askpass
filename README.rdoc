@@ -5,6 +5,7 @@ SSH_ASKPASS environment variable.
 
 == Usage
 
+Simply set the SSH_ASKPASS environment variable and require 'net/ssh/askpass'.
 
 == Copyright
 
