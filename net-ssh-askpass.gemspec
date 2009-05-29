@@ -2,12 +2,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{net-ssh-askpass}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Joe Khoobyar"]
-  s.date = %q{2009-04-30}
-  s.description = %q{Allows you to use ssh-askpass with the Net:SSH gem.
+  s.date = %q{2009-05-29}
+  s.description = %q{Allows Net:SSH to use an external program to prompt for passwords, via the
+SSH_ASKPASS environment variable.
 }
   s.email = %q{joe@ankhcraft.com}
   s.extra_rdoc_files = [
@@ -23,12 +24,12 @@ Gem::Specification.new do |s|
     "test/net_ssh_askpass_test.rb",
     "test/test_helper.rb"
   ]
-  s.has_rdoc = true
   s.homepage = %q{http://github.com/joekhoobyar/net-ssh-askpass}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.2}
-  s.summary = %q{Plugs ssh-askpass into Net::SSH}
+  s.rubyforge_project = %q{net-ssh-askpass}
+  s.rubygems_version = %q{1.3.3}
+  s.summary = %q{Adds SSH_ASKPASS support to Net::SSH}
   s.test_files = [
     "test/net_ssh_askpass_test.rb",
     "test/test_helper.rb"
