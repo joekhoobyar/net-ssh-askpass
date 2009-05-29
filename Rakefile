@@ -3,18 +3,21 @@ require 'rake'
 
 begin
   require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "net-ssh-askpass"
-    gem.summary = %Q{Plugs ssh-askpass into Net::SSH}
-    gem.description = <<-EOTEXT
-Allows you to use ssh-askpass with the Net:SSH gem.
+  Jeweler::Tasks.new do |s|
+    s.name = "net-ssh-askpass"
+    s.summary = %Q{Adds SSH_ASKPASS support to Net::SSH}
+    s.description = <<-EOTEXT
+Allows Net:SSH to use an external program to prompt for passwords, via the
+SSH_ASKPASS environment variable.
 EOTEXT
-    gem.email = "joe@ankhcraft.com"
-    gem.homepage = "http://github.com/joekhoobyar/net-ssh-askpass"
-    gem.authors = ["Joe Khoobyar"]
-    gem.add_runtime_dependency(%q<net-ssh>, [">= 2.0"])
+    s.email = "joe@ankhcraft.com"
+    s.homepage = "http://github.com/joekhoobyar/net-ssh-askpass"
+    s.authors = ["Joe Khoobyar"]
+    s.rubyforge_project = "net-ssh-askpass"
 
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    s.add_runtime_dependency(%q<net-ssh>, [">= 2.0"])
+
+    # s is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -40,6 +43,33 @@ rescue LoadError
   end
 end
 
+# These are new tasks
+begin
+  require 'rake/contrib/sshpublisher'
+  namespace :rubyforge do
+
+    desc "Release gem and RDoc documentation to RubyForge"
+    task :release => ["rubyforge:release:gem", "rubyforge:release:docs"]
+
+    namespace :release do
+      desc "Publish RDoc to RubyForge."
+      task :docs => [:rdoc] do
+        config = YAML.load(
+            File.read(File.expand_path('~/.rubyforge/user-config.yml'))
+        )
+
+        host = "#{config['username']}@rubyforge.org"
+        remote_dir = "/var/www/gforge-projects/net-ssh-askpass/"
+        local_dir = 'doc'
+
+        Rake::SshDirPublisher.new(host, remote_dir, local_dir).upload
+      end
+    end
+  end
+rescue LoadError
+  puts "Rake SshDirPublisher is unavailable or your rubyforge environment is not configured."
+end
+
 
 task :default => :test
 
@@ -51,9 +81,12 @@ Rake::RDocTask.new do |rdoc|
   else
     version = ""
   end
+  rdoc.options << '--line-numbers' << '--inline-source' <<
+    '--main' << 'README.rdoc' <<
+    '--charset' << 'utf-8'
 
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "Net-ssh-askpass #{version}"
+  rdoc.rdoc_dir = 'doc'
+  rdoc.title = "Net::SSH::AskPass #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,6 +1,10 @@
 = net-ssh-askpass
 
-Plugs ssh-askpass into Net::SSH
+Allows Net:SSH to use an external program to prompt for passwords, via the
+SSH_ASKPASS environment variable.
+
+== Usage
+
 
 == Copyright
 
