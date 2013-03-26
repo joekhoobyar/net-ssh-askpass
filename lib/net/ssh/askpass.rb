@@ -20,5 +20,13 @@ module Net
       include Net::SSH::AskPass::Prompt
       alias :prompt_askpass :prompt
     end
+
+    KeyFactory.class_eval do
+      class << self
+        alias :prompt_console :prompt
+        include Net::SSH::AskPass::Prompt
+        alias :prompt_askpass :prompt
+      end
+    end
   end
 end
